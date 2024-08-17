@@ -9,7 +9,17 @@
 >>> - SQL（Structured Query Language）：操纵关系型数据库的编程语言，定义了一套操作关系型数据库的统一标准，不管在哪一中数据库管理系统，SQL都可能用
 
 
-```mysql
--- 查找
-SELECT * FROM XXX;
+```shell
+hello world
+```
+
+```python
+print('hello world')
+```
+
+```C
+#include<stdio.h>
+int main(){
+  printf("hello world!");
+} 
 ```
