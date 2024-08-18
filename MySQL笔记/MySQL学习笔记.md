@@ -51,9 +51,58 @@ _id对应另一个表_
 > - DQL data query language 用于查询
 > - DCL data control language 用于数据库用户控制访问权限
 
+
+## MySQL的启动与停止
+
+下列指令均在命令行窗口执行  
+1、启动
+```shell
+net start mysql80
+# 注：mysql80是在安装MySQL时设置的用户名
+```
+
+2、停止
+```shell
+net stop mysql80
+```
+
+3、 客户端连接  
+（1）MySQL提供的客户端命令行工具  
+（2）系统自带的命令行工具（需要配置环境变量）
+> > ```shell
+> > mysql -u root -p
+> > # 注：后会提示输入密码
+> > ```
+
+
 ## DDL语句
 
-### 一、数据库
+### 一、数据库  
+> - 查询所有数据库  
+```mysql
+SHOW DATABASES;
+```
+
+> - 查询当前数据库
+```mysql
+SELECT DATABASE();
+```
+
+> - 创建数据库
+```mysql
+CREATE DATABASE IF [NOT EXISTS] 数据库名 [DEFAULT CHARSET 字符集（如UTF-8等）] [COLLATE 排序规则];
+```
+
+> - 删除数据库
+```mysql
+DROP DATABASE [IF EXISTS] 数据库名;
+```
+
+> - 使用数据库（切换到某一个数据库）
+```mysql
+USE 数据库名;
+```
+
 
 ### 二、表操作-查询
 
