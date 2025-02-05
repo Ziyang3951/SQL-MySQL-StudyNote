@@ -78,9 +78,9 @@ SHOW CREATE TABLE 表名;
 |MEDIUMTEXT|中等长度文本数据 |0 ~ 16777215字节 |
 |LONGTEXT |极大文本数据 |0 ~ 4294967295字节 |  
 
-> > - 注意：使用char和varchar时，其后面必跟括号和数字，表示最大允许长度  
-> > > char(10):必占10个空间 $\rightarrow$ 性能好    
-> > > varchar(10):不一定占10个空间 $\rightarrow$ 性能差些，因为要计算占多少长度
+> > - 注意：使用char和varchar时，其后面必跟括号和数字，表示最大允许长度
+> > > - char(10):必占10个空间 $\rightarrow$ 性能好   
+> > > - varchar(10):不一定占10个空间 $\rightarrow$性能差些，因为要计算占多少长度  
 
 > - **④日期数据类型**  
 
@@ -92,9 +92,81 @@ SHOW CREATE TABLE 表名;
 |DATETIME|8字节|1000-01-01 00:00:00 ~ 9999-12-31 23:59:59|
 |TIMESTAMP|4字节|1000-01-01 00:00:00 ~ 2038-01-19 03:14:07|
 
-## 三、表操作-创建  
+## 四、表操作-创建  
 
-
-
+> - 创建  
+```mysql
+CREATE TABLE 表名(
+   字段1 字段1类型 COMMENT 字段1注释  
+   字段2 字段2类型 COMMENT 字段2注释
+   ······
+   字段n 字段n注释 COMMENT 字段n注释
+) COMMENT 表注释;
+```
 
 ## 五、表操作-修改
+
+> - 添加字段  
+```mysql
+ALTER TABLE 表名 ADD字段名 类型 [COMMENT 注释] [约束];
+```
+
+> - 修改数据类型
+```mysql
+ALTER TABLE 表名 MODIFY 字段名 新类型;
+```
+
+> - 修改字段名和字段类型
+```mysql
+ALTER TABLE 表名 CHANGE 旧字段 新字段名 类型 [COMMENT 注释] [约束];
+```
+
+> - 删除字段  
+```mysql
+ALTER TABLE 表名 DROP 字段名;
+```
+
+> - 修改表名
+```mysql
+ALTER TABLE 表名 RENAME TO 新表名;
+```
+> - 删除表(两种方法)
+```mysql
+DROP TABLE [IF EXIST] 表名;
+```
+```mysql
+TRUNCATE TABLE 表名;
+```
+> > - **注：二者区别在于第二种truncate是删除表并重新创建该表，共同点在于都会删除表中的数据**
+
+
+## 六、例
+```mysql
+# 查询所有的数据库
+show databases;
+
+# 查询当前的数据库
+select database();
+
+# 创建一个数据库
+create database if not exists mydata1 default charset utf-8mb4 collate utf8mb4_unicode_ci;
+
+# 使用mydata1
+use mydata1
+
+# 创建表
+create table emp(
+    id int  comment '编号',
+    workno varchar(10) comment '工号',
+    name varchar(10) comment '姓名',
+    gender char(1) comment '性别',
+    age tinyint unsigned comment '年龄',
+    idcard char(18) comment '身份证号',
+) comment '员工表';
+
+# 添加字段
+alter table emp add workaddress varchar(50) cmmment '工作地址';
+alter table emp add entrydate date cmmment '入职时间';
+```
+
+
